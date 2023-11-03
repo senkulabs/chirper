@@ -4,20 +4,27 @@ use App\Models\Chirp;
 
 use function Livewire\Volt\{on, state};
 
-$getChirps = function () {
+$getChirps = fn () => $this->chirps = Chirp::with('user')->latest()->get();
+
+$disableEditing = function () {
     $this->editing = null;
-    return $this->chirps = Chirp::with('user')->latest()->get();
+
+    $this->getChirps();
 };
 
 state(['chirps' => $getChirps, 'editing' => null]);
 
 on([
     'chirp-created' => $getChirps,
-    'chirp-updated' => $getChirps,
-    'chirp-edit-canceled' => fn () => $this->editing = null,
+    'chirp-updated' => $disableEditing,
+    'chirp-edit-canceled' => $disableEditing,
 ]);
 
-$edit = fn (Chirp $chirp) => $this->editing = $chirp;
+$edit = function (Chirp $chirp) {
+    $this->editing = $chirp;
+
+    $this->getChirps();
+};
 
 $delete = function (Chirp $chirp) {
     $this->authorize('delete', $chirp);
