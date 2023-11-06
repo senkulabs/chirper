@@ -4,7 +4,7 @@ use App\Models\Chirp;
 
 use function Livewire\Volt\{computed, on, state};
 
-$chirps = computed(fn () => $this->chirps = Chirp::with('user')->latest()->get());
+$chirps = computed(fn () => Chirp::with('user')->latest()->get());
 
 $disableEditing = function () {
     $this->editing = null;
