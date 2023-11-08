@@ -1,4 +1,5 @@
-<form action="{{ ($chirp ?? false) ? route('chirps.update', $chirp) : route('chirps.store') }}" method="post">
+<form action="{{ ($chirp ?? false) ? route('chirps.update', $chirp) : route('chirps.store') }}" method="post"
+    class="{{ ($chirp ?? false) ? 'p-6' : '' }}">
     @csrf
     @if ($chirp ?? false)
         @method('patch')
