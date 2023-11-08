@@ -12,3 +12,4 @@ Importmap::pin("#lib/platform/node/index.js", to: "https://ga.jspm.io/npm:@jspm/
 Importmap::pin("@hotwired/turbo", to: "https://ga.jspm.io/npm:@hotwired/turbo@7.3.0/dist/turbo.es2017-esm.js");
 Importmap::pin("@hotwired/stimulus", to: "https://ga.jspm.io/npm:@hotwired/stimulus@3.2.2/dist/stimulus.js");
 Importmap::pin("@hotwired/stimulus-loading", to: "vendor/stimulus-laravel/stimulus-loading.js", preload: true);Importmap::pin("el-transition", to: "https://ga.jspm.io/npm:el-transition@0.0.7/index.js");
+Importmap::pin("@github/time-elements", to: "https://ga.jspm.io/npm:@github/time-elements@4.0.0/dist/index.js");

@@ -7,6 +7,8 @@
             <x-primary-button class="mt-4">{{ __('Chirp') }}</x-primary-button>
         </form>
 
-
+        <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+            @each ('chirps._chirp', $chirps, 'chirp')
+        </div>
     </div>
 </x-app-layout>
