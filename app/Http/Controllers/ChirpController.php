@@ -36,7 +36,14 @@ class ChirpController extends Controller
             'message' => 'required|string|max:255'
         ]);
 
-        $request->user()->chirps()->create($validated);
+        $chirp = $request->user()->chirps()->create($validated);
+
+        $chirp->broadcastPrependTo('chirps')
+            ->target('chirps')
+            ->partial('chirps._chirp', [
+                'chirp' => $chirp
+            ])
+            ->toOthers();
 
         return redirect(route('chirps.index'))->with('status', __('Chirp created.'));
     }
