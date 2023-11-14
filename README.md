@@ -35,4 +35,38 @@ php artisan serve
 
 ## Issue
 
-Issue happened in Hotwire Everything section. TBA.
+Issue happened in [Broadcasting section in Turbo Laravel Bootcamp](https://bootcamp.turbo-laravel.com/broadcasting). Here's what I do.
+
+Login two users on different browsers to test if Broadcasting success.
+
+```bash
+User 1
+email: kresna@example.com
+password: 12345678
+
+User 2
+email: satya@example.com
+password: 12345678
+```
+
+- Install soketi with Docker as alternative of Pusher.
+
+```bash
+docker run -p 6001:6001 -p 9601:9601 quay.io/soketi/soketi:1.4-16-debian
+```
+
+- Change BROADCAST_DRIVER to `pusher` and update **PUSHER_*** value in .env file.
+
+```bash
+BROADCAST_DRIVER=pusher
+
+PUSHER_APP_ID="app-id"
+PUSHER_APP_KEY="app-key"
+PUSHER_APP_SECRET="app-secret"
+PUSHER_HOST=127.0.0.1
+PUSHER_PORT=6001
+PUSHER_SCHEME=http
+PUSHER_APP_CLUSTER=mt1
+```
+
+- Test create chirp and update chirp but it fails.
