@@ -33,10 +33,6 @@ php artisan db:seed
 php artisan serve
 ```
 
-## Issue
-
-Issue happened in [Broadcasting section in Turbo Laravel Bootcamp](https://bootcamp.turbo-laravel.com/broadcasting). Here's what I do.
-
 Login two users on different browsers to test if Broadcasting success.
 
 ```bash
@@ -69,4 +65,4 @@ PUSHER_SCHEME=http
 PUSHER_APP_CLUSTER=mt1
 ```
 
-- Test create chirp and update chirp but it fails.
+Test create chirp from one account to another account in different browser then it works.
