@@ -3,3 +3,8 @@
 <meta name="current-pusher-wsHost" content="{{ config('broadcasting.connections.pusher.options.host') }}">
 <meta name="current-pusher-wsPort" content="{{ config('broadcasting.connections.pusher.options.port') }}">
 <meta name="current-pusher-forceTLS" content="{{ json_encode(boolval(config('broadcasting.connections.pusher.options.useTLS'))) }}">
+
+@auth
+<meta name="current-identity-id" content="{{ Auth::user()->id }}">
+<meta name="current-identity-name" content="{{ Auth::user()->name }}">
+@endauth
