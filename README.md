@@ -30,7 +30,13 @@ composer install
 php artisan key:generate
 php artisan migrate
 php artisan db:seed
+# For symlink js files that mapped from resources/js to public/js because I'm using importmap package
+php artisan storage:link
+# Because this project use tailwindcss then we need to download TailwindCSS binary with command below
+php artisan tailwindcss:download
 php artisan serve
+# 2nd tab terminal
+php artisan tailwindcss:watch
 ```
 
 Login two users on different browsers to test if Broadcasting success.
@@ -48,7 +54,7 @@ password: 12345678
 - Install soketi with Docker as alternative of Pusher.
 
 ```bash
-docker run -p 6001:6001 -p 9601:9601 quay.io/soketi/soketi:1.4-16-debian
+docker run -d -p 6001:6001 -p 9601:9601 quay.io/soketi/soketi:1.4-16-debian
 ```
 
 - Change BROADCAST_DRIVER to `pusher` and update **PUSHER_*** value in .env file.
