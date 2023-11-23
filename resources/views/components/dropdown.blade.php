@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-white'])
+@props(['align' => 'right', 'width' => '48', 'class' => '', 'contentClasses' => 'py-1 bg-white', 'dataController' => '', 'dataAction' => ''])
 
 @php
 switch ($align) {
@@ -21,7 +21,7 @@ switch ($width) {
 }
 @endphp
 
-<div class="relative" data-controller="dropdown" data-action="turbo:before-cache@window->dropdown#closeNow click@window->dropdown#close close->dropdown#close">
+<div class="relative {{ $class }}" data-controller="dropdown {{ $dataController }}" data-action="turbo:before-cache@window->dropdown#closeNow click@window->dropdown#close close->dropdown#close {{ $dataAction }}" {{ $attributes }}>
     <div data-action="click->dropdown#toggle" data-dropdown-target="trigger">
         {{ $trigger }}
     </div>

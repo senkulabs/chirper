@@ -14,8 +14,11 @@
                     <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                     @endunless
                 </div>
-                @if ($chirp->user->is(auth()->user()))
-                <x-dropdown>
+                <x-dropdown
+                    class="hidden"
+                    data-controller="visible-to-creator"
+                    data-visible-to-creator-id-value="{{ $chirp->user_id }}"
+                    data-visible-to-creator-hidden-class="hidden">
                     <x-slot name="trigger">
                         <button>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
@@ -35,7 +38,6 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
-                @endif
             </div>
             <p class="mt-4 text-lg text-gray-900">{{ $chirp->message }}</p>
         </div>
