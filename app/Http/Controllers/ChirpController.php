@@ -38,13 +38,6 @@ class ChirpController extends Controller
 
         $chirp = $request->user()->chirps()->create($validated);
 
-        $chirp->broadcastPrependTo('chirps')
-            ->target('chirps')
-            ->partial('chirps._chirp', [
-                'chirp' => $chirp
-            ])
-            ->toOthers();
-
         return redirect(route('chirps.index'))->with('status', __('Chirp created.'));
     }
 
@@ -79,13 +72,6 @@ class ChirpController extends Controller
 
         $chirp->update($validated);
 
-        $chirp->broadcastReplaceTo('chirps')
-            ->target(dom_id($chirp))
-            ->partial('chirps._chirp', [
-                'chirp' => $chirp
-            ])
-            ->toOthers();
-
         if ($request->wantsTurboStream()) {
             return turbo_stream([
                 turbo_stream($chirp),
@@ -104,10 +90,6 @@ class ChirpController extends Controller
         $this->authorize('delete', $chirp);
 
         $chirp->delete();
-
-        $chirp->broadcastRemoveTo('chirps')
-            ->target(dom_id($chirp))
-            ->toOthers();
 
         if ($request->wantsTurboStream()) {
             return turbo_stream([
