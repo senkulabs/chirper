@@ -3,6 +3,7 @@
     import PrimaryButton from "@/Components/PrimaryButton.svelte";
     import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.svelte";
     import { page, useForm } from "@inertiajs/svelte";
+    import Chirp from "./Chirp.svelte";
 
     const form = useForm({
         message: ''
@@ -17,7 +18,7 @@
         });
     }
 
-    const chirps = $page.props.chirps;
+    const chirps = $derived($page.props.chirps);
 </script>
 
 <svelte:head>
@@ -32,5 +33,11 @@
             <InputError class="mt-2" message={$form.errors.message} />
             <PrimaryButton class="mt-4">Chirp</PrimaryButton>
         </form>
+
+        <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+            {#each chirps as chirp}
+                <Chirp {chirp}/>
+            {/each}
+        </div>
     </div>
 </AuthenticatedLayout>
