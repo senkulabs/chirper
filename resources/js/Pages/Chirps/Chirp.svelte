@@ -1,5 +1,6 @@
 <script>
     import Dropdown from "@/Components/Dropdown.svelte";
+    import DropdownLink from "@/Components/DropdownLink.svelte";
     import InputError from "@/Components/InputError.svelte";
     import PrimaryButton from "@/Components/PrimaryButton.svelte";
     import { useForm, page } from "@inertiajs/svelte";
@@ -53,6 +54,7 @@
                         <button class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out" onclick={() => editing = true}>
                             Edit
                         </button>
+                        <DropdownLink href={route('chirps.destroy', chirp)} as="button" method="delete">Delete</DropdownLink>
                     {/snippet}
                 </Dropdown>
             {/if}
