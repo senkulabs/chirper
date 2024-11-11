@@ -35,7 +35,7 @@
         </form>
 
         <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-            {#each chirps as chirp}
+            {#each chirps as chirp (chirp.id)}
                 <Chirp {chirp} />
             {/each}
         </div>
