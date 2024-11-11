@@ -1,4 +1,5 @@
 <script>
+    import Chirp from '@/Components/Chirp.svelte';
     import InputError from '@/Components/InputError.svelte';
     import PrimaryButton from '@/Components/PrimaryButton.svelte';
     import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.svelte';
@@ -16,6 +17,8 @@
             }
         });
     }
+
+    const chirps = $derived($page.props.chirps);
 </script>
 
 <svelte:head>
@@ -30,5 +33,11 @@
             <InputError class="mt-2" message={$form.errors.message} />
             <PrimaryButton class="mt-4">Chirp</PrimaryButton>
         </form>
+
+        <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+            {#each chirps as chirp}
+                <Chirp {chirp} />
+            {/each}
+        </div>
     </div>
 </AuthenticatedLayout>
