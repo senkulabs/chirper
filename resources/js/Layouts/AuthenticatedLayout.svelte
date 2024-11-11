@@ -31,6 +31,9 @@
                         <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                             Dashboard
                         </NavLink>
+                        <NavLink href={route('chirps.index')} active={route().current('chirps.index')}>
+                            Chirps
+                        </NavLink>
                     </div>
                 </div>
 
@@ -104,6 +107,9 @@
             <div class="space-y-1 pb-3 pt-2">
                 <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>
                     Dashboard
+                </ResponsiveNavLink>
+                <ResponsiveNavLink href={route('chirps.index')} active={route().current('chirps.index')}>
+                    Chirps
                 </ResponsiveNavLink>
             </div>
 
