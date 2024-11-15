@@ -2,3 +2,12 @@
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+# Specific files
+composer.json
+composer.lock
+eslint.config.js
+package.json
+postcss.config.js
+tailwind.config.js
+vite.config.js

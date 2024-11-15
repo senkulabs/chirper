@@ -18,6 +18,11 @@ export default [
 		}
 	},
 	{
-		ignores: ['build/', '.svelte-kit/', 'dist/']
-	}
+		ignores: ['bootstrap', 'public', 'vendor']
+	},
+    {
+        rules: {
+            "no-undef": "off"
+        }
+    }
 ];
