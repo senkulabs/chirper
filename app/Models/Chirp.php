@@ -6,13 +6,19 @@ use App\Events\ChirpCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Tonysm\RichTextLaravel\Models\Traits\HasRichText;
 
 class Chirp extends Model
 {
     use HasFactory;
+    use HasRichText;
 
     protected $fillable = [
-        'message',
+        'content'
+    ];
+
+    protected $richTextAttributes = [
+        'content' => ['encrypted' => true],
     ];
 
     protected $dispatchesEvents = [
