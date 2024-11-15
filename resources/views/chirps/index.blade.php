@@ -50,7 +50,7 @@
                         </x-dropdown>
                         @endif
                     </div>
-                    <p class="mt-4 text-lg text-gray-900">{{ h($chirp->content) }}</p>
+                    <div class="mt-4 text-lg text-gray-900 [&_a]:underline [&_pre]:bg-gray-200 [&_pre]:p-4 [&_blockquote]:border-l-4 [&_blockquote]:pl-2 dark:[&_pre]:!bg-gray-700 dark:[&_pre]:rounded dark:[&_pre]:!text-white">{{ h($chirp->content) }}</div>
                 </div>
             </div>
             @endforeach
