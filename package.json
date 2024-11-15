@@ -3,7 +3,11 @@
     "type": "module",
     "scripts": {
         "build": "vite build && vite build --ssr",
-        "dev": "vite"
+        "dev": "vite",
+        "check": "svelte-check --tsconfig ./jsconfig.json",
+		"check:watch": "svelte-check --tsconfig ./jsconfig.json --watch",
+		"format": "prettier --write .",
+		"lint": "prettier --check . && eslint ."
     },
     "devDependencies": {
         "@inertiajs/svelte": "^2.0.0-beta.2",
