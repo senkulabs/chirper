@@ -13,11 +13,11 @@
     const form = useForm({
         current_password: '',
         password: '',
-        password_confirmation: '',
+        password_confirmation: ''
     });
 
     function updatePassword(e) {
-        e.preventDefault()
+        e.preventDefault();
         $form.put(route('password.update'), {
             preserveScroll: true,
             onSuccess: () => $form.reset(),
@@ -30,7 +30,7 @@
                     $form.reset('current_password');
                     currentPasswordInput?.focus();
                 }
-            },
+            }
         });
     }
 </script>
@@ -93,9 +93,9 @@
             <PrimaryButton disabled={$form.processing}>Save</PrimaryButton>
 
             {#if $form.recentlySuccessful}
-            <div transition:fade={{ easing: cubicInOut }}>
-                <p class="text-sm text-gray-600 transition ease-in-out">Saved.</p>
-            </div>
+                <div transition:fade={{ easing: cubicInOut }}>
+                    <p class="text-sm text-gray-600 transition ease-in-out">Saved.</p>
+                </div>
             {/if}
         </div>
     </form>

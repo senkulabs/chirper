@@ -4,6 +4,6 @@
 
 {#if message}
     <div {...attrs}>
-        <p class="text-sm text-red-600">{ message }</p>
+        <p class="text-sm text-red-600">{message}</p>
     </div>
 {/if}

@@ -1,12 +1,12 @@
-import './bootstrap.js';
 import '../css/app.css';
+import './bootstrap.js';
 
-import { createInertiaApp } from "@inertiajs/svelte";
+import { createInertiaApp } from '@inertiajs/svelte';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { hydrate, mount } from 'svelte';
 
 createInertiaApp({
-    resolve: name =>
+    resolve: (name) =>
         resolvePageComponent(`./Pages/${name}.svelte`, import.meta.glob('./Pages/**/*.svelte')),
     setup({ el, App, props }) {
         if (!el) {

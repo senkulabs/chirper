@@ -1,5 +1,5 @@
 <script>
-    import { onMount } from "svelte";
+    import { onMount } from 'svelte';
     let { class: className, value = $bindable(), ...attrs } = $props();
 
     let input;
@@ -15,7 +15,7 @@
     });
 </script>
 
-<input 
+<input
     {...attrs}
     class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 {className}"
     bind:value

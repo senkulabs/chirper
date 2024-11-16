@@ -7,15 +7,12 @@
     import { fade } from 'svelte/transition';
     import { cubicInOut } from 'svelte/easing';
 
-    let {
-        mustVerifyEmail,
-        status,
-    } = $props();
+    let { mustVerifyEmail, status } = $props();
 
     const user = $page.props.auth.user;
     const form = useForm({
         name: user.name,
-        email: user.email,
+        email: user.email
     });
 
     function submit(e) {
@@ -87,9 +84,9 @@
             <PrimaryButton disabled={$form.processing}>Save</PrimaryButton>
 
             {#if $form.recentlySuccessful}
-            <div transition:fade={{ easing: cubicInOut }}>
-                <p class="text-sm text-gray-600 transition ease-in-out">Saved.</p>
-            </div>
+                <div transition:fade={{ easing: cubicInOut }}>
+                    <p class="text-sm text-gray-600 transition ease-in-out">Saved.</p>
+                </div>
             {/if}
         </div>
     </form>

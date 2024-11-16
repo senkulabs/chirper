@@ -1,20 +1,19 @@
 <script>
-    import DangerButton from "@/Components/DangerButton.svelte";
-    import InputLabel from "@/Components/InputLabel.svelte";
-    import InputError from "@/Components/InputError.svelte";
-    import Modal from "@/Components/Modal.svelte";
-    import SecondaryButton from "@/Components/SecondaryButton.svelte";
-    import TextInput from "@/Components/TextInput.svelte";
-    import { useForm } from "@inertiajs/svelte";
+    import DangerButton from '@/Components/DangerButton.svelte';
+    import InputLabel from '@/Components/InputLabel.svelte';
+    import InputError from '@/Components/InputError.svelte';
+    import Modal from '@/Components/Modal.svelte';
+    import SecondaryButton from '@/Components/SecondaryButton.svelte';
+    import TextInput from '@/Components/TextInput.svelte';
+    import { useForm } from '@inertiajs/svelte';
 
     let confirmingUserDeletion = $state(false);
 
-    // svelte-ignore non_reactive_update
     /** @type {HTMLInputElement} */
     let passwordInput;
 
     const form = useForm({
-        password: "",
+        password: ''
     });
 
     function confirmUserDeletion() {
@@ -27,26 +26,24 @@
             preserveScroll: true,
             onSuccess: () => closeModal(),
             onError: () => passwordInput?.focus(),
-            onFinish: () => $form.reset(),
+            onFinish: () => $form.reset()
         });
-    };
+    }
 
     function closeModal() {
         $form.clearErrors();
         $form.reset();
         confirmingUserDeletion = false;
-    };
+    }
 </script>
 
 <section class="space-y-6">
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            Delete Account
-        </h2>
+        <h2 class="text-lg font-medium text-gray-900">Delete Account</h2>
         <p class="mt-1 text-sm text-gray-600">
-            Once your account is deleted, all of its resources and data will be
-            permanently deleted. Before deleting your account, please download
-            any data or information that you wish to retain.
+            Once your account is deleted, all of its resources and data will be permanently deleted.
+            Before deleting your account, please download any data or information that you wish to
+            retain.
         </p>
     </header>
 
@@ -59,17 +56,13 @@
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
-                Once your account is deleted, all of its resources and data
-                will be permanently deleted. Please enter your password to
-                confirm you would like to permanently delete your account.
+                Once your account is deleted, all of its resources and data will be permanently
+                deleted. Please enter your password to confirm you would like to permanently delete
+                your account.
             </p>
 
             <div class="mt-6">
-                <InputLabel
-                    for="password"
-                    value="Password"
-                    class="sr-only"
-                />
+                <InputLabel for="password" value="Password" class="sr-only" />
 
                 <TextInput
                     id="password"
@@ -79,7 +72,7 @@
                     class="mt-1 block w-full"
                     placeholder="Password"
                     onkeyup={(event) => {
-                        if (event.key === "Enter") deleteUser();
+                        if (event.key === 'Enter') deleteUser();
                     }}
                 />
 
@@ -87,15 +80,9 @@
             </div>
 
             <div class="mt-6 flex justify-end">
-                <SecondaryButton onclick={closeModal}>
-                    Cancel
-                </SecondaryButton>
+                <SecondaryButton onclick={closeModal}>Cancel</SecondaryButton>
 
-                <DangerButton
-                    class="ml-3"
-                    processing={$form.processing}
-                    onclick={deleteUser}
-                >
+                <DangerButton class="ml-3" processing={$form.processing} onclick={deleteUser}>
                     Delete Account
                 </DangerButton>
             </div>
