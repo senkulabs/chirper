@@ -1,5 +1,4 @@
 <script>
-    import { onDestroy } from 'svelte';
     import { fade } from 'svelte/transition';
     import { cubicIn, cubicOut } from 'svelte/easing';
 
@@ -19,6 +18,10 @@
     $effect(() => {
         if (show) document.body.appendChild(dialog);
         if (document) document.body.style.overflow = show ? 'hidden' : 'visible';
+
+        return () => {
+            if (document) document.body.style.overflow = 'visible';
+        }
     });
 
     const close = () => {
@@ -32,10 +35,6 @@
             close();
         }
     };
-
-    onDestroy(() => {
-        if (document) document.body.style.overflow = 'visible';
-    });
 
     let maxWidthClass = $derived(
         {
