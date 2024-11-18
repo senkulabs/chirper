@@ -5,3 +5,54 @@
 [data-cloak] {
     display: none;
 }
+
+/** Trix */
+
+.trix-content .attachment {
+    @apply relative;
+}
+
+.trix-content .attachment img {
+    @apply rounded-sm;
+}
+
+.trix-content .attachment figcaption {
+    /** NOTE: Some lines missing here */
+    @apply transition text-sm outline-none py-1 !text-gray-400 !rounded-b-[calc(theme(borderRadius.sm)-1px)];
+}
+
+.trix-content:not(trix-editor) .attachment-gallery figcaption {
+    @apply !inset-x-[calc(theme(spacing.2)+1px)];
+}
+
+.trix-content .attachment:hover figcaption {
+    @apply !bg-gray-800/70 !text-gray-100;
+}
+
+trix-editor .attachment figcaption textarea {
+    @apply outline-none ring-0;
+}
+
+trix-editor .attachment figcaption textarea {
+    @apply !bg-transparent;
+
+    -ms-overflow-style: none; /** IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    /* Chrome, Safari, and Opera */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+trix-editor .attachment-gallery figcaption {
+    @apply !inset-x-2;
+}
+
+trix-editor [data-trix-mutable].attachment figcaption {
+    @apply !bg-gray-800/70 !text-gray-100;
+}
+
+trix-editor [data-trix-mutable].attachment img {
+    @apply border-indigo-500 ring-1 ring-indigo-500 dark:border-indigo-600 dark:ring-indigo-600;
+}

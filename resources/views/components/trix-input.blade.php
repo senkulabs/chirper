@@ -1,4 +1,4 @@
-@props(['id', 'name', 'value' => ''])
+@props(['id', 'name', 'value' => '', 'acceptFiles' => false])
 
 <input
     type="hidden"
@@ -7,7 +7,7 @@
     value="{{ $value }}"
 />
 
-<div class="border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus-within:ring-1 focus-within:border-indigo-500 dark:focus-within:border-indigo-600 focus-within:ring-indigo-500 dark:focus-within:ring-indigo-600 rounded-md shadow-sm">
+<div class="border transition has-[[data-dragging=true]]:border-green-400 has-[[data-dragging=true]]:border-dashed border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus-within:ring-1 focus-within:border-indigo-500 dark:focus-within:border-indigo-600 focus-within:ring-indigo-500 dark:focus-within:ring-indigo-600 rounded-md shadow-sm">
     <trix-toolbar
         class="bg-white dark:bg-gray-800 rounded-t-md border-b dark:-border-gray-900 shadow-xs sticky top-0 inset-x-0"
         id="{{ $id }}_toolbar"
@@ -25,7 +25,9 @@
                 <button type="button" class="!border-0 trix-button trix-button--icon trix-button--icon-number-list" data-trix-attribute="number" title="${lang.numbers}" tabindex="-1">${lang.numbers}</button>
                 <button type="button" class="!border-0 trix-button trix-button--icon trix-button--icon-decrease-nesting-level" data-trix-action="decreaseNestingLevel" title="${lang.outdent}" tabindex="-1">${lang.outdent}</button>
                 <button type="button" class="!border-0 trix-button trix-button--icon trix-button--icon-increase-nesting-level" data-trix-action="increaseNestingLevel" title="${lang.indent}" tabindex="-1">${lang.indent}</button>
+                @if($acceptFiles)
                 <button type="button" class="!border-0 trix-button trix-button--icon trix-button--icon-attach" data-trix-action="attachFiles" title="${lang.attachFiles}" tabindex="-1">${lang.attachFiles}</button>
+                @endif
             </span>
 
             <span class="trix-button-group-spacer"></span>
@@ -53,6 +55,34 @@
         id="{{ $id }}"
         toolbar="{{ $id }}_toolbar"
         input="{{ $id }}_input"
+        x-data="{
+            dragging: false,
+            uploadAttachment(event) {
+                if (! event?.attachment?.file) return;
+
+                const form = new FormData();
+
+                form.append('file', event.attachment.file);
+                
+                axios.post('/attachments', form, {
+                    onUploadProgress(progressEvent) {
+                        event.attachment.setUploadProgress(progressEvent.progress * 100); 
+                    }
+                }).then(({ data: attributes }) => {
+                    event.attachment.setAttributes(attributes);
+                });
+            }
+        }"
+        @if ($acceptFiles)
+        x-on:trix-attachment-add="uploadAttachment"
+        x-on:dragover="dragging = true"
+        x-on:dragleave="dragging = false"
+        x-on:dragend.window="dragging = false"
+        x-on:drop.window="dragging = false"
+        x-bind:data-dragging="dragging"
+        @else
+        x-on:trix-file-accept.prevent
+        @endif
         {{ $attributes->merge(['class' => 'trix-content !rounded-t-none !border-none !border-none dark:[&_pre]:!bg-gray-700 dark:[&_pre]:rounded dark:[&_pre]:!text-white']) }}
     ></trix-editor>
 </div>
